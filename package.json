@@ -1,16 +1,22 @@
 {
   "name": "verifactu-tools",
   "version": "1.0.0",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
+    "patch-xsd": "tsx scripts/patch-xsd-imports.ts",
+    "codegen": "npm run patch-xsd && wsdl-tsclient wsdl/SistemaFacturacion.wsdl -o src/generated",
     "test": "jest"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-  },
+  "description": "Herramientas para Verifactu: generación de tipos, cliente SOAP y validación XML",
+  "author": "alediator",
+  "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^29.5.0",
+    "jest": "^29.7.0",
+    "libxmljs": "^1.0.11",
+    "ts-node": "^10.9.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
     "wsdl-tsclient": "^1.7.1"
   }
 }
