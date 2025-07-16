@@ -1,0 +1,16 @@
+{
+  "name": "verifactu-tools",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "wsdl-tsclient": "^1.7.1"
+  }
+}

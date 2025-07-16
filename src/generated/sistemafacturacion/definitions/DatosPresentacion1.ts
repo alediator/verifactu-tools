@@ -1,0 +1,14 @@
+
+/**
+ * DatosPresentacion
+ * @targetNSAlias `sf`
+ * @targetNamespace `https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/tike/cont/ws/SuministroInformacion.xsd`
+ */
+export interface DatosPresentacion1 {
+    /** NIFType|string|length */
+    NIFPresentador?: string;
+    /** dateTime */
+    TimestampPresentacion?: Date;
+    /** TextMax20Type|string|maxLength */
+    IdPeticion?: string;
+}
