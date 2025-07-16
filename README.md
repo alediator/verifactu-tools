@@ -90,6 +90,57 @@ const valid = xmlDoc.validate(xsdDoc);
 - WSDL y XSD descargados desde la web de AEAT
 - Archivo `xmldsig-core-schema.xsd` de [W3C](https://www.w3.org/TR/xmldsig-core/xmldsig-core-schema.xsd)
 
+## Uso
+
+```ts
+import { getVerifactuClient } from 'verifactu-tools';
+
+(async () => {
+  // Puedes crear el cliente sin enviar nada, útil para generar XML
+  const client = await getVerifactuClient();
+
+  const input = {
+    Cabecera: {
+      IDVersionSii: '1.1',
+      Titular: {
+        NombreRazon: 'Empresa de Prueba S.L.',
+        NIF: 'B12345678'
+      }
+    },
+    RegistroAlta: [ ... ]
+  };
+
+  const xml = client.wsdl.objectToXML(
+    { SuministroLR: input },
+    'SuministroLR',
+    'sf',
+    'https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/sii/ws/SuministroFactEmitidas/v1.1/wsSuministroFactEmitidas.wsdl',
+    true
+  );
+
+  console.log(xml);
+})();
+
+## Generar XML desde JSON
+
+```ts
+import { generarXMLDesdeJson } from 'verifactu-tools';
+
+const input = {
+  Cabecera: {
+    IDVersionSii: '1.1',
+    Titular: {
+      NombreRazon: 'Empresa de Prueba S.L.',
+      NIF: 'B12345678'
+    }
+  },
+  RegistroAlta: [ ... ]
+};
+
+const xml = await generarXMLDesdeJson(input);
+console.log(xml);
+```
+
 ---
 
 ## 📄 Licencia

@@ -1,0 +1,33 @@
+{
+  "Cabecera": {
+    "IDVersionSii": "1.1",
+    "Titular": {
+      "NombreRazon": "EMPRESA MULTIFAC SL",
+      "NIF": "B87654321"
+    }
+  },
+  "RegistroAlta": [
+    {
+      "IDFactura": {
+        "NumSerieFacturaEmisor": "F2025-002",
+        "FechaExpedicionFacturaEmisor": "2025-07-01"
+      },
+      "FacturaExpedida": {
+        "DescripcionOperacion": "Venta producto A",
+        "ImporteTotal": "150.00",
+        "TipoFactura": "F1"
+      }
+    },
+    {
+      "IDFactura": {
+        "NumSerieFacturaEmisor": "F2025-003",
+        "FechaExpedicionFacturaEmisor": "2025-07-02"
+      },
+      "FacturaExpedida": {
+        "DescripcionOperacion": "Venta producto B",
+        "ImporteTotal": "300.00",
+        "TipoFactura": "F2"
+      }
+    }
+  ]
+}

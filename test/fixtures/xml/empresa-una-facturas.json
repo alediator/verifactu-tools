@@ -1,0 +1,22 @@
+{
+  "Cabecera": {
+    "IDVersionSii": "1.1",
+    "Titular": {
+      "NombreRazon": "EMPRESA FACTU SL",
+      "NIF": "B87654325"
+    }
+  },
+  "RegistroAlta": [
+    {
+      "IDFactura": {
+        "NumSerieFacturaEmisor": "F2025-002",
+        "FechaExpedicionFacturaEmisor": "2025-07-01"
+      },
+      "FacturaExpedida": {
+        "DescripcionOperacion": "Venta producto C",
+        "ImporteTotal": "1500.00",
+        "TipoFactura": "F1"
+      }
+    }
+  ]
+}
