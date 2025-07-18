@@ -1,9 +1,8 @@
 import { generarXMLDesdeJson } from '../src';
 import type { RegFactuSistemaFacturacion } from '../src/generated/sistemafacturacion/definitions/RegFactuSistemaFacturacion';
 
-describe('Suite de integración AEAT VeriFactu referente a 9.1.1 de la documentacion', () => {
+describe('Generar XML del ejemplo 9.1.1 de la documentacion', () => {
   const endpoint = process.env.VERIFACTU_ENDPOINT;
-  let hashAnterior = '';
 
   const facturaAlta = {
   Cabecera: {
@@ -81,10 +80,22 @@ describe('Suite de integración AEAT VeriFactu referente a 9.1.1 de la documenta
   } satisfies RegFactuSistemaFacturacion;
 
   it('El xml este bien formado', async () => {
-    const xml = generarXMLDesdeJson(facturaAlta);
-    console.log(xml);
+    const xml = await generarXMLDesdeJson(facturaAlta);
+
+    // ✅ Validaciones básicas
     expect(xml).toContain('<sf:SuministroLR');
     expect(xml).toContain('<sf:Cabecera>');
     expect(xml).toContain('<sf:RegistroAlta>');
+    
+    // ✅ Validar Cabecera
+    expect(xml).toContain(`<sf:NombreRazon>${facturaAlta.Cabecera.ObligadoEmision.NombreRazon}</sf:NombreRazon>`);
+    expect(xml).toContain(`<sf:NIF>${facturaAlta.Cabecera.ObligadoEmision.NIF}</sf:NIF>`);
+
+    // ✅ Registro Alta
+    expect(xml).toContain(`<sf:IDVersion>${facturaAlta.RegistroFactura[0].RegistroAlta.IDVersion}</sf:IDVersion>`);
+    expect(xml).toContain(`<sf:TipoFactura>${facturaAlta.RegistroFactura[0].RegistroAlta.TipoFactura}</sf:TipoFactura>`);
+    expect(xml).toContain(`<sf:ImporteTotal>${facturaAlta.RegistroFactura[0].RegistroAlta.ImporteTotal}</sf:ImporteTotal>`);
+    expect(xml).toContain(`<sf:Huella>${facturaAlta.RegistroFactura[0].RegistroAlta.Encadenamiento.RegistroAnterior.Huella}</sf:Huella>`);
+    expect(xml).toContain(`<sf:Huella>${facturaAlta.RegistroFactura[0].RegistroAlta.Huella}</sf:Huella>`);
   });
 });
