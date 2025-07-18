@@ -1,7 +1,7 @@
 import { generarXMLDesdeJson } from '../src';
 import type { RegFactuSistemaFacturacion } from '../src/generated/sistemafacturacion/definitions/RegFactuSistemaFacturacion';
 
-describe('Generar XML del ejemplo 9.1.1 de la documentacion', () => {
+describe('Generar XML del ejemplo 9.1.1.1 de la documentacion', () => {
   const endpoint = process.env.VERIFACTU_ENDPOINT;
 
   const facturaAlta = {
