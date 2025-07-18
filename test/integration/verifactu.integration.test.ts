@@ -55,5 +55,46 @@ describe('Suite de integración AEAT VeriFactu', () => {
   });
 
   // it('modifica la factura', async () => { ... });
-  // it('anula la factura', async () => { ... });
+  /**
+   * it('anula la factura', async () => { ... });
+   * 
+
+  const facturaAnulacion = {
+  Cabecera: {
+    ObligadoEmision: {
+      NombreRazon: 'Empresa Test S.L.',
+      NIF: 'B12345678',
+    },
+  },
+  RegistroFactura: [
+    {
+      RegistroAnulacion: {
+        IDFactura: {
+          IDEmisorFacturaAnulada: 'B12345678',
+          NumSerieFacturaAnulada: 'F2025-TEST1',
+          FechaExpedicionFacturaAnulada: '2025-07-16',
+        },
+        SistemaInformatico: {
+          NombreSistemaInformatico: 'verifactu-tools',
+          Version: '0.1.0',
+        },
+        Encadenamiento: {
+          RegistroAnterior: {
+            IDEmisorFactura: 'B12345678',
+            NumSerieFactura: 'F2025-TEST1',
+            FechaExpedicionFactura: '2025-07-16',
+            Huella: hashAnterior
+          }
+        }
+      }
+    }
+  ]
+  } satisfies RegFactuSistemaFacturacion;
+
+  it('anula una factura', async () => {
+    const response = await registrarFacturas(facturaAnulacion, endpoint);
+    console.log('Respuesta registro:', JSON.stringify(response, null, 2));
+    expect(response[0].EstadoEnvio).toBeDefined();
+  });
+   * */
 });
