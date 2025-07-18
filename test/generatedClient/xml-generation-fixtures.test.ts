@@ -1,9 +1,9 @@
 import fs from 'fs';
 import path from 'path';
-import { createClientAsync } from '../src/generated/sistemafacturacion/client';
+import { createClientAsync } from '../../src/generated/sistemafacturacion/client';
 
-const WSDL_PATH = path.resolve(__dirname, '../wsdl/SistemaFacturacion.wsdl');
-const FIXTURES_DIR = path.resolve(__dirname, 'fixtures/xml');
+const WSDL_PATH = path.resolve(__dirname, '../../wsdl/SistemaFacturacion.wsdl');
+const FIXTURES_DIR = path.resolve(__dirname, '../fixtures/xml');
 
 describe('VeriFactu XML Generation - fixtures', () => {
   const fixtures = fs.readdirSync(FIXTURES_DIR).filter(f => f.endsWith('.json'));
@@ -21,7 +21,7 @@ describe('VeriFactu XML Generation - fixtures', () => {
       true
     );
 
-    console.log(`🧾 XML generado para ${fixtureFile}:\n`, xml);
+    // console.log(`🧾 XML generado para ${fixtureFile}:\n`, xml);
 
     // ✅ Validaciones básicas
     expect(xml).toContain('<sf:SuministroLR');
