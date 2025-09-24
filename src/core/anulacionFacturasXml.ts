@@ -23,7 +23,7 @@ export async function anulacionFacturasXml(
     const fechaHora = anulacion.FechaHoraHusoGenRegistro as Date;
     
     if (!anulacion.FechaHoraHusoGenRegistro) {
-     throw 'FechaHoraHusoGenRegistro es requerido';
+     throw new Error('FechaHoraHusoGenRegistro es requerido');
     }
 
     const hashParams: HashAnulacionParams = {
