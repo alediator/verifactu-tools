@@ -8,6 +8,9 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": "./",
+    "declaration": true,
+    "emitDeclarationOnly": false,
+    "declarationMap": false,
     "outDir": "dist"
   },
   "include": ["src", "scripts", "test"]
