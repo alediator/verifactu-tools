@@ -1,15 +1,12 @@
 {
   "name": "verifactu-tools",
-  "version": "1.0.05",
+  "version": "1.0.6",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
+    "import": "./dist/index.js",
+    "require": "./dist/index.js"
   },
   "files": ["dist"],
   "scripts": {
