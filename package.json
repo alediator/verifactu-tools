@@ -1,6 +1,6 @@
 {
   "name": "verifactu-tools",
-  "version": "1.0.03",
+  "version": "1.0.04",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
