@@ -2,7 +2,16 @@
   "name": "verifactu-tools",
   "version": "1.0.0",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
+    "build": "tsc --project tsconfig.json",
     "patch-xsd": "tsx scripts/patch-xsd-imports.ts",
     "codegen": "npm run patch-xsd && wsdl-tsclient wsdl/SistemaFacturacion.wsdl -o src/generated",
     "test": "jest"
