@@ -30,22 +30,18 @@ dotenv.config();
 const [
   ,
   ,
-  certPath,                 // Path al cert (PEM o PFX)
-  keyOrPassphrase,          // Path a key PEM o passphrase PFX
-  passphraseOrEndpoint,     // passphrase o endpoint
-  maybeEndpoint,
+  certPath,                 // Path al cert (PFX)
+  passphrase,     // passphrase o endpoint
+  endpoint,
   nif = '00000000X',
   desde = '2025-07-01',
   hasta = '2025-09-28'
 ] = process.argv;
 
 // --- Validación mínima ---
-if (!certPath || !keyOrPassphrase || !passphraseOrEndpoint) {
+if (!certPath || !passphrase || !endpoint) {
   console.error(`
 ❌ Uso incorrecto
-
-Modo PEM + KEY:
-  tsx scripts/consultar-facturas.ts ./cert.pem ./key.pem 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28
 
 Modo PFX:
   tsx scripts/consultar-facturas.ts ./cert.pfx 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28
@@ -54,25 +50,10 @@ Modo PFX:
 }
 
 // --- Resolver tipo de certificado ---
-let certOptions: any;
-let endpoint: string;
-
-if (keyOrPassphrase.endsWith('.pem')) {
-  // Certificado PEM + KEY
-  certOptions = {
-    cert: fs.readFileSync(path.resolve(certPath)),
-    key: fs.readFileSync(path.resolve(keyOrPassphrase)),
-    passphrase: passphraseOrEndpoint,
-  };
-  endpoint = maybeEndpoint;
-} else {
-  // Certificado PFX
-  certOptions = {
+let certOptions= {
     pfx: fs.readFileSync(path.resolve(certPath)),
-    passphrase: keyOrPassphrase,
+    passphrase
   };
-  endpoint = passphraseOrEndpoint;
-}
 
 // --- Payload de ejemplo ---
 const consulta = {
