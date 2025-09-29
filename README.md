@@ -141,6 +141,98 @@ const xml = await generarXMLDesdeJson(input);
 console.log(xml);
 ```
 
+## 📜 Uso desde línea de comandos
+
+Puedes ejecutar scripts incluidos en esta librería directamente desde terminal usando [`tsx`](https://github.com/esbuild-kit/tsx). Esto es últil para realizar pruebas manuales sin necesidad de montar código adicional o para recoger la última línea desde otro software.
+
+> ⚠️ Requiere tener instalado `tsx` globalmente o usar `npx`.
+
+Instalación recomendada:
+
+```
+npm install -g tsx
+```
+
+---
+
+### 🔐 Requisitos
+
+* Node.js >= 18
+* Certificado digital en formato `.pfx`
+* Clave (passphrase) del certificado
+
+---
+
+### 🧪 Calcular hash
+
+```
+verifactu-tools-hash <tipo> '<json>'
+```
+
+* `tipo`: `alta` o `anulacion`
+* `json`: Objeto con los campos requeridos
+
+Ejemplo:
+
+```
+verifactu-tools-hash anulacion '{"IDEmisorFacturaAnulada":"89890001K","NumSerieFacturaAnulada":"12345679/G34","FechaExpedicionFacturaAnulada":"01-01-2024","Huella":"F7B94CFD8924EDFF273501B01EE5153E4CE8F259766F88CF6ACB8935802A2B97","FechaHoraHusoGenRegistro":"2024-01-01T19:20:40+01:00"}'
+```
+
+---
+
+### 📤 Registrar factura
+
+```
+verifactu-tools-registrar <cert.pfx> <passphrase> <endpoint> '<json>' [verbose]
+```
+
+Ejemplo:
+
+```
+verifactu-tools-registrar ./certs/cert.pfx 1234 https://prewww2.aeat.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP '{
+  "Cabecera": {
+    "ObligadoEmision": {
+      "NombreRazon": "Empresa Test S.L.",
+      "NIF": "89890001K"
+    }
+  },
+  "RegistroFactura": [{
+    "RegistroAlta": {
+      "IDFactura": {
+        "IDEmisorFactura": "89890001K",
+        "NumSerieFactura": "12345678/G33",
+        "FechaExpedicionFactura": "01-01-2024"
+      },
+      "TipoFactura": "F1",
+      "DescripcionOperacion": "Servicio de prueba AEAT",
+      "CuotaTotal": "12.35",
+      "ImporteTotal": "123.45",
+      "SistemaInformatico": {
+        "NombreSistemaInformatico": "verifactu-tools",
+        "Version": "1.0.8"
+      },
+      "FechaHoraHusoGenRegistro": "2024-01-01T19:20:30+01:00",
+      "TipoHuella": "01"
+    }
+  }]
+}' true
+```
+
+---
+
+### 🔍 Consultar facturas
+
+```
+verifactu-tools-consultar <cert.pfx> <passphrase> <endpoint> [nif] [desde] [hasta] [verbose]
+```
+
+Ejemplo:
+
+```
+verifactu-tools-consultar ./certs/cert.pfx 1234 https://prewww2.aeat.es/wlpl/TIKE-CONT/ws/SistemaFacturacion/VerifactuSOAP B12345678 2025-07-01 2025-09-28 true
+```
+
+
 ---
 
 ## 📄 Licencia

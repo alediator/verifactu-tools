@@ -1,41 +1,33 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 
 /**
  * Script para consultar facturas en el entorno de pruebas de AEAT VeriFactu.
  * 
- * Soporta certificados en formato:
- * - PEM + KEY + passphrase
+ * Solo soporta certificados en formato:
  * - PFX + passphrase
  * 
- * Parámetros CLI esperados:
- *    tsx scripts/consultar-facturas.ts <certPath> <keyOrPassphrase> <passphraseOrEndpoint> [endpoint] [nif] [desde] [hasta]
+ * Uso:
+ * tsx scripts/consultar-facturas.ts <certPath.pfx> <passphrase> <endpoint> [nif] [desde] [hasta] [verbose]
  * 
- * Ejemplos:
- * 1. Certificado en PEM + KEY:
- *    tsx scripts/consultar-facturas.ts ./cert.pem ./key.pem 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28
- * 
- * 2. Certificado en PFX:
- *    tsx scripts/consultar-facturas.ts ./cert.pfx 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28
+ * Ejemplo:
+ * tsx scripts/consultar-facturas.ts ./cert.pfx 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28 true
  */
 
 import fs from 'fs';
 import path from 'path';
-import dotenv from 'dotenv';
 import { consultarFacturas } from '../src';
-
-// Cargar variables de entorno desde .env si existe
-dotenv.config();
 
 // --- PARÁMETROS CLI ---
 const [
   ,
   ,
-  certPath,                 // Path al cert (PFX)
-  passphrase,     // passphrase o endpoint
-  endpoint,
+  certPath,          // ./cert.pfx
+  passphrase,        // 1234
+  endpoint,          // https://...
   nif = '00000000X',
   desde = '2025-07-01',
-  hasta = '2025-09-28'
+  hasta = '2025-09-28',
+  verboseFlag        // 'true' opcional
 ] = process.argv;
 
 // --- Validación mínima ---
@@ -43,19 +35,20 @@ if (!certPath || !passphrase || !endpoint) {
   console.error(`
 ❌ Uso incorrecto
 
-Modo PFX:
-  tsx scripts/consultar-facturas.ts ./cert.pfx 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28
+  tsx scripts/consultar-facturas.ts ./cert.pfx 1234 https://aeat-pre.aeat.es/... B12345678 2025-07-01 2025-09-28 [verbose]
 `);
   process.exit(1);
 }
 
-// --- Resolver tipo de certificado ---
-let certOptions= {
-    pfx: fs.readFileSync(path.resolve(certPath)),
-    passphrase
-  };
+// --- Opciones de certificado ---
+const certOptions = {
+  pfx: fs.readFileSync(path.resolve(certPath)),
+  passphrase,
+};
 
-// --- Payload de ejemplo ---
+const verbose = verboseFlag === 'true';
+
+// --- Payload de consulta ---
 const consulta = {
   Cabecera: {
     IDVersionSii: '1.1',
@@ -70,9 +63,9 @@ const consulta = {
 };
 
 // --- Llamada ---
-;(async () => {
+(async () => {
   try {
-    const result = await consultarFacturas(consulta, endpoint, certOptions, true);
+    const result = await consultarFacturas(consulta, endpoint, certOptions, verbose);
     console.log('\n✅ Resultado de la consulta:');
     console.log(JSON.stringify(result, null, 2));
   } catch (err) {

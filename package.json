@@ -10,6 +10,11 @@
       "import": "./dist/index.js"
     }
   },
+  "bin": {
+    "verifactu-tools-hash": "./scripts/calcular-hash.ts",
+    "verifactu-tools-consultar": "./scripts/consultar-facturas.ts",
+    "verifactu-tools-registrar": "./scripts/registrar-facturas.ts"
+  },
   "files": [
     "dist"
   ],

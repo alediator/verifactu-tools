@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env tsx
 import { calcularHash } from '../src';
 
 const args = process.argv.slice(2);
