@@ -2,6 +2,9 @@
 import path from 'path';
 import { createClientAsync } from '../generated/sistemafacturacion/client';
 
+import { fileURLToPath } from 'url';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 const WSDL_PATH = path.resolve(__dirname, '../../wsdl/SistemaFacturacion.wsdl');
 const DEFAULT_NAMESPACE = 'https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/sii/ws/SuministroFactEmitidas/v1.1/wsSuministroFactEmitidas.wsdl';
 
