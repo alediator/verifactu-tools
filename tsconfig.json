@@ -11,7 +11,9 @@
     "declaration": true,
     "emitDeclarationOnly": false,
     "declarationMap": false,
-    "outDir": "dist"
+    "outDir": "dist",
+    "rootDir": "."
   },
-  "include": ["src", "scripts", "test"]
+  "include": ["src", "scripts", "test"],
+  "exclude": ["dist", "node_modules"]
 }

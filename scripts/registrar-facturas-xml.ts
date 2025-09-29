@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 import fs from 'fs';
 import path from 'path';
@@ -59,7 +59,11 @@ if (!fs.existsSync(fullPfxPath)) {
     console.log('[✅ Respuesta AEAT]:');
     console.log(JSON.stringify(result, null, 2));
   } catch (err) {
-    console.error('[❌ Error al registrar]', err.message || err);
+    if (err instanceof Error) {
+      console.error('Error:', err.message);
+    } else {
+      console.error('Error desconocido:', err);
+    }
     process.exit(1);
   }
 })();

@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Script para registrar facturas en el entorno de pruebas de AEAT VeriFactu.
@@ -108,7 +108,11 @@ const facturaAlta: RegFactuSistemaFacturacion = {
     console.log('\n✅ Respuesta de AEAT:');
     console.log(JSON.stringify(respuesta, null, 2));
   } catch (err) {
-    console.error('\n❌ Error al registrar:', err.message || err);
+    if (err instanceof Error) {
+      console.error('Error:', err.message);
+    } else {
+      console.error('Error desconocido:', err);
+    }
     process.exit(1);
   }
 })();

@@ -1,4 +1,4 @@
-#!/usr/bin/env tsx
+#!/usr/bin/env node
 
 /**
  * Script para consultar facturas en el entorno de pruebas de AEAT VeriFactu.
@@ -76,7 +76,11 @@ const consulta = {
     console.log('\n✅ Resultado de la consulta:');
     console.log(JSON.stringify(result, null, 2));
   } catch (err) {
-    console.error('\n❌ Error al consultar:', err.message || err);
+    if (err instanceof Error) {
+      console.error('Error:', err.message);
+    } else {
+      console.error('Error desconocido:', err);
+    }
     process.exit(1);
   }
 })();
