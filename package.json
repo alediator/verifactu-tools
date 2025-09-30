@@ -1,6 +1,6 @@
 {
   "name": "verifactu-tools",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,6 +12,7 @@
   },
   "bin": {
     "verifactu-tools-hash": "./scripts/calcular-hash.ts",
+    "verifactu-tools-xml": "./scripts/enviar-xml.ts",
     "verifactu-tools-consultar": "./scripts/consultar-facturas.ts",
     "verifactu-tools-registrar": "./scripts/registrar-facturas.ts"
   },

@@ -1,1 +1,23 @@
-<sf:ConsultaFactuSistemaFacturacion xmlns:sf="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/sii/ws/SuministroFactEmitidas/v1.1/wsSuministroFactEmitidas.wsdl" xmlns="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/ssii/sii/ws/SuministroFactEmitidas/v1.1/wsSuministroFactEmitidas.wsdl"><sf:Cabecera><sf:IDVersionSii>1.1</sf:IDVersionSii><sf:ObligadoEmision><sf:NIF>00000000X</sf:NIF></sf:ObligadoEmision></sf:Cabecera><sf:FiltroFactura><sf:FechaExpedicionDesde>2025-07-01</sf:FechaExpedicionDesde><sf:FechaExpedicionHasta>2025-09-28</sf:FechaExpedicionHasta></sf:FiltroFactura></sf:ConsultaFactuSistemaFacturacion>
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+xmlns:con="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/tike/cont/ws/ConsultaLR.xsd"
+xmlns:sum="https://www2.agenciatributaria.gob.es/static_files/common/internet/dep/aplicaciones/es/aeat/tike/cont/ws/SuministroInformacion.xsd">
+<soapenv:Header/>
+<soapenv:Body>
+<con:ConsultaFactuSistemaFacturacion>
+<con:Cabecera>
+<sum:IDVersion>1.0</sum:IDVersion>
+<sum:ObligadoEmision>
+<sum:NombreRazon>EMPRESAXXXX</sum:NombreRazon>
+<sum:NIF>B21946215</sum:NIF>
+</sum:ObligadoEmision>
+</con:Cabecera>
+<con:FiltroConsulta>
+<con:PeriodoImputacion>
+<sum:Ejercicio>2024</sum:Ejercicio>
+<sum:Periodo>11</sum:Periodo>
+</con:PeriodoImputacion>
+</con:FiltroConsulta>
+</con:ConsultaFactuSistemaFacturacion>
+</soapenv:Body>
+</soapenv:Envelope>
