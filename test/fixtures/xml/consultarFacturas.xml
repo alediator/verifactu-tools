@@ -9,7 +9,7 @@ xmlns:sum="https://www2.agenciatributaria.gob.es/static_files/common/internet/de
 <sum:IDVersion>1.0</sum:IDVersion>
 <sum:ObligadoEmision>
 <sum:NombreRazon>EMPRESAXXXX</sum:NombreRazon>
-<sum:NIF>B21946215</sum:NIF>
+<sum:NIF>BXXXXXX</sum:NIF>
 </sum:ObligadoEmision>
 </con:Cabecera>
 <con:FiltroConsulta>
